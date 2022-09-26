@@ -77,6 +77,7 @@ You need to specify the storage location for array, struts and mapping when pass
 ### Eth Faucet
 
 [Chain Link Faucet](https://docs.chain.link/docs/link-token-contracts/#goerli)
+[Goerli Faucet](https://goerlifaucet.com/)
 
 ### Remix Shortcut
 
