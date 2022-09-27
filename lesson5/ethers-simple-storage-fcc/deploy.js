@@ -28,11 +28,13 @@ async function main() {
     const transactionReceipt = await contract.deployTransaction.wait(1) //wait 1 block confirmation to confirm the deployment
 
     console.log(`Contract Address: ${contract.address}`)
+
     // console.log("Here is the deployment transaction:");
     // console.log(contract.deployTransaction);
 
     // console.log("Here is the transaction receipt: ");
     // console.log(transactionReceipt);
+
     // console.log("Let's deploy with only transaction data!");
     // const nonce = await wallet.getTransactionCount();
     // const tx = {
