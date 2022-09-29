@@ -269,4 +269,8 @@ assert.equal(
 
 - To create a branch `git init -b main`
 - gray stuff is the things that will be ignored when doing `git push`
--
+- `git status` will give you an update of things you don't have a committed
+- To push code to github use, `git add *`, `git commit -m'comment'`, `git push`
+- To add as remote repo, `git remote add origin <URL>`
+- To view remote repo, use `git remote -v`
+- `git push origin main`
