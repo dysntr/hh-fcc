@@ -251,3 +251,22 @@ assert.equal(
 - private variables are cheaper
 
 ### Adding scripts to your package
+
+- Here is an example of some scripts you can add to hardhat.config.js
+
+```js
+"scripts": {
+        "test": "hardhat test",
+        "test:staging": "hardhat test --network goerli",
+        "lint": "solhint 'contracts/*.sol'",
+        "lint:fix": "solhint 'contracts/**/*.sol' --fix",
+        "format": "prettier --write .",
+        "coverage": "hardhat coverage"
+    }
+```
+
+### Git creation
+
+- To create a branch `git init -b main`
+- gray stuff is the things that will be ignored when doing `git push`
+-
