@@ -2,6 +2,11 @@
 
 - [Lesson Link](https://github.com/smartcontractkit/full-blockchain-solidity-course-js#lesson-2-welcome-to-remix-simple-storage)
 
+## Useful links:
+
+[Chain Link Faucet](https://docs.chain.link/docs/link-token-contracts/#goerli)
+[Goerli Faucet](https://goerlifaucet.com/)
+
 ## My Notes
 
 ### Versions
@@ -27,7 +32,9 @@ Variables are holders for different values.
 - int - positive or negative whole number, eg. `int x = -123;`.
 - string - represent words (actually bytes object), eg. `string name = "John";`
 - address - metamask address, eg. `address myAddress = 0x12321..2342;`
-- bytes - eg. `bytes32 favBytes = "cat"`;
+- bytes - bytes1 (8bit), bytes2(16bit) to bytes32(64bits) eg. `bytes32 favBytes = "cat"`;
+  - bytes1 - 0x00
+  - bytes20 - address size - uint160
 - struct - items get indexed in the structure
   - ` struct People { uint256 favoriteNumber; string name; }`
   - ex. `People public person = People ({favoriteNumber: 1, name:"d"});`

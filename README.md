@@ -1,4 +1,4 @@
-#Hardhat freecodecamp
+# Hardhat freecodecamp
 
 My repo for going through Hardhat freecodecamp!
 

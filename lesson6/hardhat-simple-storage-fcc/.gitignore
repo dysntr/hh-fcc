@@ -11,10 +11,5 @@ cache
 artifacts
 gas-report.txt
 
-#misc
-.idea
-.vscode
-bytecode
-coverage
-crytic-export
-.notes.md
+
+

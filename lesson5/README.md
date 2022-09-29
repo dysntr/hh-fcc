@@ -268,7 +268,7 @@ console.log(`Updated Favorite Number: ${updatedFavoriteNumber.toString()}`);
 
 ### prettier config
 
-- You can save this file in the root of your project to set your formating
+- You can save this file in the root of your project to set your formatting
 
 ```json
 {
@@ -281,3 +281,12 @@ console.log(`Updated Favorite Number: ${updatedFavoriteNumber.toString()}`);
 ### Verifying contract
 
 - You can verify on `etherscan.io`
+
+### Inline Function
+
+- Here is an example of an inline function:
+- This function is called GetAmountB(uint160, uint160, uint128). The 3 input parameters are passed to either functions, getTokenBDelta01() : or getTokenBDelta10()
+
+```solidity
+  function(uint160, uint160, uint128) pure returns (uint256) getAmountB = zeroToOne ? getTokenBDelta01 : getTokenBDelta10;
+```

@@ -12,7 +12,7 @@
 ## My Notes
 
 - How do we send ETH to contract?
-  - you use the value parameter
+  - you use the {value:} parameter
   - ex. `require (msg.value > 1e18, "Didn't send enough"); //1e18 = 1 * 10^18 = 1 ETH`
 - Every Transactions you send will have the following fields:
   - Nonce: tx count for the account
@@ -95,5 +95,5 @@ require (callSuccess, "Call failed");
 
 - What happens if someone sends this contract ETH without calling the fund function.
 - Receive and fallback are special functions, without the function keyword. eg. `receive() external payable {}`
-- If no data is associated with the transaction and value > 0, then receive is called.
-- If there is data and value > 0, then fallback() is called. eg. `fallback() external [payable]{}`
+- If no data is associated with the transaction and value > 0, then receive is called. If receive doesn't exist, fallback is called.
+- If there is data and value > 0, then fallback() is called. eg. `fallback() external [payable]{}`.
