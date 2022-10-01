@@ -1,17 +1,32 @@
-require("@nomicfoundation/hardhat-toolbox") //needed for tasks
+//require("@nomicfoundation/hardhat-toolbox") //needed for tasks
 require("@nomiclabs/hardhat-etherscan") //needed for verify
 require("dotenv").config()
 require("hardhat-gas-reporter") //gas reporter
 require("solidity-coverage") //solidity test coverage
-
-require("./tasks/accounts")
+require("@nomiclabs/hardhat-waffle")
+require("hardhat-deploy")
+require("hardhat-contract-sizer")
+//require("./tasks/accounts")
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
-const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || ""
-const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
+const MAINNET_RPC_URL =
+    process.env.MAINNET_RPC_URL ||
+    process.env.ALCHEMY_MAINNET_RPC_URL ||
+    "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
+const GOERLI_RPC_URL =
+    process.env.GOERLI_RPC_URL || "https://eth-goerli.alchemyapi.io/v2/your-api-key"
+const POLYGON_MAINNET_RPC_URL =
+    process.env.POLYGON_MAINNET_RPC_URL || "https://polygon-mainnet.alchemyapi.io/v2/your-api-key"
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x"
+// optional
+const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
+
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
+
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "Your polygonscan API key"
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
+
 module.exports = {
     defaultNetwork: "hardhat",
     networks: {
@@ -26,9 +41,24 @@ module.exports = {
         goerli: {
             url: GOERLI_RPC_URL,
             accounts: [PRIVATE_KEY],
-            chainId: 42,
+            chainId: 5,
             blockConfirmations: 6, //used in deploy
             gas: 6000000,
+        },
+        mainnet: {
+            url: MAINNET_RPC_URL,
+            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+            //   accounts: {
+            //     mnemonic: MNEMONIC,
+            //   },
+            saveDeployments: true,
+            chainId: 1,
+        },
+        polygon: {
+            url: POLYGON_MAINNET_RPC_URL,
+            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+            saveDeployments: true,
+            chainId: 137,
         },
     },
     solidity: {
@@ -36,14 +66,12 @@ module.exports = {
             {
                 version: "0.8.8",
             },
-            {
-                version: "0.6.6",
-            },
         ],
     },
     etherscan: {
         apiKey: {
-            goerli: `${ETHERSCAN_API_KEY}`,
+            goerli: ETHERSCAN_API_KEY,
+            polygon: POLYGONSCAN_API_KEY,
         },
     },
     gasReporter: {

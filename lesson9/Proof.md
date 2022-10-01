@@ -1,0 +1,2 @@
+Raffle Contract Address: 0xc9397648428436C6dd838bDaD2D5f484b80af7dA
+https://goerli.etherscan.io/address/0xc9397648428436C6dd838bDaD2D5f484b80af7dA

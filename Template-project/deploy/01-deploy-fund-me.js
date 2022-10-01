@@ -18,21 +18,19 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("----------------------------------------------------")
     log("Deploying FundMe and waiting for confirmations...")
     const args = [ethUsdPriceFeedAddress]
-    const fundMe = await deploy("FundMe", {
+    const contract = await deploy("FundMe", {
         from: deployer,
         args: args,
         log: true,
         // we need to wait if on a live network so we can verify properly
         waitConfirmations: network.config.blockConfirmations || 1,
     })
-    log(`FundMe deployed at ${fundMe.address}`)
+    log(`contract deployed at ${contract.address}`)
 
-    if (
-        !developmentChains.includes(network.name) &&
-        process.env.ETHERSCAN_API_KEY
-    ) {
-        await verify(fundMe.address, args)
+    if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
+        log("Verifying...")
+        await verify(contract.address, args)
     }
 }
 
-module.exports.tags = ["all", "fundme"]
+module.exports.tags = ["all", "contract"]

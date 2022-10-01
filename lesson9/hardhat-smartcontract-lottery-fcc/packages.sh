@@ -1,10 +1,5 @@
-#install dependencies
-yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle chai ethereum-waffle hardhat hardhat-contract-sizer hardhat-deploy hardhat-gas-reporter prettier prettier-plugin-solidity solhint solidity-coverage dotenv 
-#npm install --global hardhat-shorthand
-#hardhat-completion install 
-
 #For reading .env file and formating
-#yarn add --dev dotenv prettier prettier-plugin-solidity @nomiclabs/hardhat-solhint
+yarn add --dev dotenv prettier prettier-plugin-solidity @nomiclabs/hardhat-solhint
 
 #For reading abi import fs
 yarn add fs
