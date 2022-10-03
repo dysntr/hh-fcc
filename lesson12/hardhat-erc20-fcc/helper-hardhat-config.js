@@ -19,8 +19,8 @@ const developmentChains = ["hardhat", "localhost"]
 const DECIMALS = 8
 const INITIAL_ANSWER = 200000000000
 
-const frontEndContractsFile = "../constants/contractAddresses.json"
-const frontEndAbiFile = "../constants/abi.json"
+const frontEndContractsFile = "./constants/contractAddresses.json"
+const frontEndAbiFile = "./constants/abi.json"
 
 module.exports = {
     networkConfig,
