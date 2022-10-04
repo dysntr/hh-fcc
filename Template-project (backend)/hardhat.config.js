@@ -33,6 +33,9 @@ module.exports = {
         hardhat: {
             chainId: 31337,
             // gasPrice: 130000000000,
+            forking: {
+                url: MAINNET_RPC_URL,
+            },
         },
         localhost: {
             url: "http://127.0.0.1:8545",
