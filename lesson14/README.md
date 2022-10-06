@@ -6,6 +6,8 @@
 
 - Solidity cheatsheet - https://docs.soliditylang.org/en/latest/cheatsheet.html
 - evm.codes
+- https://github.com/PatrickAlphaC/hardhat-nft-fcc/blob/main/contracts/sublesson/CallAnything.sol
+-
 
 ## My Notes
 
