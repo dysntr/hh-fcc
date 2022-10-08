@@ -36,12 +36,10 @@ module.exports = {
             forking: {
                 url: MAINNET_RPC_URL,
             },
-            blockConfirmations: 6, //used in deploy
         },
         localhost: {
             url: "http://127.0.0.1:8545",
             chainId: 31337,
-            blockConfirmations: 6, //used in deploy
         },
         goerli: {
             url: GOERLI_RPC_URL,
