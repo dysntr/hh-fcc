@@ -1,28 +1,29 @@
-//imports
-const { getNamedAccounts, deployments, network } = require("hardhat")
-const { developmentChains } = require("../helper-hardhat-config")
+const { network } = require("hardhat")
+const { developmentChains, VERIFICATION_BLOCK_CONFIRMATIONS } = require("../helper-hardhat-config")
 const { verify } = require("../utils/verify")
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
+    const waitBlockConfirmations = developmentChains.includes(network.name)
+        ? 1
+        : VERIFICATION_BLOCK_CONFIRMATIONS
 
     log("----------------------------------------------------")
-    log("Deploying NFTMarketplace and waiting for confirmations...")
-    const args = []
-    const contract = await deploy("NFTMarketplace", {
+    const arguments = []
+    const nftMarketplace = await deploy("NftMarketplace", {
         from: deployer,
-        args: args,
+        args: arguments,
         log: true,
-        // we need to wait if on a live network so we can verify properly
-        waitConfirmations: network.config.blockConfirmations || 1,
+        waitConfirmations: waitBlockConfirmations,
     })
-    log(`contract deployed at ${contract.address}`)
 
+    // Verify the deployment
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...")
-        await verify(contract.address, args)
+        await verify(nftMarketplace.address, arguments)
     }
+    log("----------------------------------------------------")
 }
 
-module.exports.tags = ["all", "contract"]
+module.exports.tags = ["all", "nftmarketplace"]

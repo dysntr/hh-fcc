@@ -1,32 +1,44 @@
 const networkConfig = {
+    default: {
+        name: "hardhat",
+        keepersUpdateInterval: "30",
+    },
     31337: {
         name: "localhost",
+        subscriptionId: "588",
+        gasLane: "0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc", // 30 gwei
+        keepersUpdateInterval: "30",
+        raffleEntranceFee: "100000000000000000", // 0.1 ETH
+        callbackGasLimit: "500000", // 500,000 gas
     },
-    // Price Feed Address, values can be obtained at https://docs.chain.link/docs/reference-contracts
-    // Default one is ETH/USD contract on Kovan
-    42: {
-        name: "kovan",
-        ethUsdPriceFeed: "0x9326BFA02ADD2366b30bacB125260Af641031331",
+    5: {
+        name: "goerli",
+        subscriptionId: "588",
+        gasLane: "0x79d3d8832d904592c0bf9818b621522c988bb8b0c05cdc3b15aea1b6e8db0c15", // 30 gwei
+        keepersUpdateInterval: "30",
+        raffleEntranceFee: "100000000000000000", // 0.1 ETH
+        callbackGasLimit: "500000", // 500,000 gas
     },
-    4: {
-        name: "rinkeby",
-        ethUsdPriceFeed: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
+    1: {
+        name: "mainnet",
+        keepersUpdateInterval: "30",
     },
 }
 
 const developmentChains = ["hardhat", "localhost"]
-
-const DECIMALS = 8
-const INITIAL_ANSWER = 200000000000
-
-const frontEndContractsFile = "./constants/contractAddresses.json"
-const frontEndAbiFile = "./constants/abi.json"
+const VERIFICATION_BLOCK_CONFIRMATIONS = 6
+const frontEndContractsFile = "../nextjs-nft-marketplace-moralis-fcc/constants/networkMapping.json"
+const frontEndContractsFile2 =
+    "../nextjs-nft-marketplace-thegraph-fcc/constants/networkMapping.json"
+const frontEndAbiLocation = "../nextjs-nft-marketplace-moralis-fcc/constants/"
+const frontEndAbiLocation2 = "../nextjs-nft-marketplace-thegraph-fcc/constants/"
 
 module.exports = {
     networkConfig,
     developmentChains,
-    DECIMALS,
-    INITIAL_ANSWER,
+    VERIFICATION_BLOCK_CONFIRMATIONS,
     frontEndContractsFile,
-    frontEndAbiFile,
+    frontEndContractsFile2,
+    frontEndAbiLocation,
+    frontEndAbiLocation2,
 }
