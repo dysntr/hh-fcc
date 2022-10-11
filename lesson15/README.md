@@ -10,6 +10,7 @@
 ### Useful Links
 
 - rekt.news
+- thegraph.com
 
 ## My Notes
 
@@ -133,3 +134,101 @@ function MyApp({ Component, pageProps }) {
 - `lesson15/nextjs-nft-marketplace-moralis-fcc/addEvents.js` is an example of how you can add event listening for moralis local dev environment server. Run it by `node addEvent.js`
 - Moralis only accepts the chainid for localserver to be 1337, so you may have to change that in the code.
 - To test event generations, run `yarn hardhat run scripts/mint-and-list-item.js --network localhost`
+- Instead of using props and expanding the props, you can use `{}`. Here is an ex. of the pattern `export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress, seller })`
+- `fetch(URL)` in JS gets you the webpage. ex. `const tokenURIResponse = await (await fetch(requestURL)).json()`
+- A modal is something that pops up.
+- Example of input text box in js:
+
+```js
+<Input
+  label="Update listing price in L1 Currency (ETH)"
+  name="New listing price"
+  onChange={(event) => {
+    setPriceToUpdateListingWith(event.target.value);
+  }}
+  type="number"
+/>
+```
+
+- Example of form:
+
+```js
+<Form
+  onSubmit={approveAndList}
+  data={[
+    {
+      name: "NFT Address",
+      type: "text",
+      inputWidth: "50%",
+      value: "",
+      key: "nftAddress",
+    },
+    {
+      name: "Token ID",
+      type: "number",
+      value: "",
+      key: "tokenId",
+    },
+    {
+      name: "Price (in ETH)",
+      type: "number",
+      value: "",
+      key: "price",
+    },
+  ]}
+  title="Sell your NFT!"
+  id="Main Form"
+/>
+```
+
+### The Graph
+
+- Allows you to query the blockchains using subgraphs
+- Allows you to index blockchains
+- Create a new subgraph from thegraph.com
+  - in the subgraph you define data model, network, contract addresses, and other configs locally
+  - You can deploy subgraph using `graph deploy --studio <subgraph-name>`
+- graphql is a query language for your api
+- Add Visual code extension `GraphQL`
+- ! in graphql means it's required, you need to add the schema to `schema.graphql`
+- Run `graph codegen` will generate `.\src\nft-marketplace.ts` code, you need to run this every time you update `schema.graphql`
+- You can update `subgraph.yaml` to specify which block it should indexing at, here is an example
+
+```yaml
+dataSources:
+  - kind: ethereum
+    name: NftMarketplace
+    network: goerli
+    source:
+      address: "0x5C4d69a8c9d631fA1314Ec141F0B95C06Ba999f0"
+      abi: NftMarketplace
+      startBlock: 7746568
+```
+
+- You can query the graph item from the front end
+- `yarn add graphql @apollo/client`
+
+```js
+import { useQuery, gql } from "@apollo/client";
+const GET_ACTIVE_ITEMS = gql`
+  {
+    activeItems(
+      first: 5
+      where: { buyer: "0x0000000000000000000000000000000000000000" }
+    ) {
+      id
+      buyer
+      seller
+      nftAddress
+      tokenId
+      price
+    }
+  }
+`;
+
+export default function GraphExample() {
+  const { loading, error, data } = useQuery(GET_ACTIVE_ITEMS);
+  console.log(data);
+  return <div>hi</div>;
+}
+```
