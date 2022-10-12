@@ -7,7 +7,8 @@
 ### Useful Links
 
 - consensys.github.io/smart-contract-best-practices/attacks
-
+- chainlink x certik blog secutiy
+- 
 ## My Notes
 
 - Audit - Security code review looking for vulnerabilities
